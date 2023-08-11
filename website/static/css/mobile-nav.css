@@ -1,0 +1,36 @@
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 998;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.mobile-nav__menu {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header__sun {
+    display: block;
+    color: var(--secondary3);
+    margin: .8em 0;
+    width: var(--size-2xl);
+    height: var(--size-2xl);
+    transition: all .3s;
+}
+
+.mobile-nav__link {
+    font-size: var(--size-sm);
+}

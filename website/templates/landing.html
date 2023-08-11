@@ -1,0 +1,41 @@
+{% extends "main.html" %}
+{% block content %}
+    <div class="landing__grid">
+        <div class="item1 landing__card" data-tilt data-tilt-reverse="true" data-tilt-scale="1.01" data-tilt-max="1" data-tilt-speed="800" data-tilt-perspective="800">
+            <h1 contenteditable class="item1__title">Keep UP with <strong>your dreams!</strong>✌️</h1>
+            <h3 class="item1__subtitle">There is always something to do...</h3>
+            <div class="landing__overlay"></div>
+            <img class="landing__img" src="static/images/todolist.jpg" alt="">
+        </div>
+        <div class="item2 landing__card" data-tilt data-tilt-reverse="true" data-tilt-scale="1.01" data-tilt-max="2" data-tilt-speed="800" data-tilt-perspective="800">
+            <div contenteditable class="landing__animation">
+                <p class="typed">Write it down ✅</p> 
+                <p class="typed delay1">Make it happen! ✅</p>
+                <p class="typed delay2">Mark as done ✅</p>
+            </div>
+            <a class="card__content" href="/about">
+                Learn more
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="arrow">
+                    <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z" clip-rule="evenodd" />
+                </svg>
+            </a>
+        </div>
+        <div class="item3 landing__card" data-tilt data-tilt-reverse="true" data-tilt-scale="1.01" data-tilt-max="3" data-tilt-speed="800" data-tilt-perspective="800">
+            {% if current_user.is_authenticated %}
+            <a class="card__content" href="/todos">
+                Continue
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="arrow">
+                    <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z" clip-rule="evenodd" />
+                </svg>
+            </a>
+            {% else %}
+            <a class="card__content" href="/signup">
+                Explore
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="arrow">
+                    <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z" clip-rule="evenodd" />
+                </svg>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "main.html" %}
+{% block title %} Log In {% endblock %}
+{% block content %}
+    <form method="POST">
+        <div class="enter">
+            <h1>Log in</h1>
+            <div class="enter__input">
+                <label for="email">Email Address</label>
+                <input type="email" name="email" id="email" placeholder="Enter Email">
+                
+                <label for="email">Password</label>
+                <input type="password" name="password" id="password" placeholder="Enter Password">
+                
+                <p>Don't have an accaunt?<a href="/signup"> Sign Up</a></p>
+            </div>
+            <button class="btn" type="submit">Login</button>
+        </div>
+    </form>
+{% endblock %}

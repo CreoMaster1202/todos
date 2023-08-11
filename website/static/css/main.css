@@ -1,0 +1,116 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --text: #f2f2f2ff;
+    --background: #1e1f2bff;
+    --primary1: #563262ff;
+    --primary2: #423262ff;
+    --primary3: #323262ff;
+    --secondary1: #2a2b3cff;
+    --secondary2: #3f415aff;
+    --secondary3: #696c96ff;
+    --accent: #a6e12cff;
+
+    /* --text: rgb(243, 237, 247);
+    --background: rgb(13, 8, 18);
+    --primary: rgb(130, 57, 57);
+    --secondary: rgb(21, 14, 24);
+    --accent: rgb(77, 214, 186); */
+
+    /* sizes */
+    --size-xxs: .5rem;
+    --size-xs: .75rem;
+    --size-sm: .875rem;
+    --size-base: 1rem;
+    --size-lg: 1.125rem;
+    --size-xl: 1.25rem;
+    --size-2xl: 1.5rem;
+    --size-3xl: 1.875rem;
+    --size-4xl: 2.25rem;
+    --size-5xl: 3rem;
+    --size-6xl: 3.75rem;
+    --size-7xl: 4.5rem;
+    --size-8xl: 6rem;
+    --size-9xl: 8rem;
+    --size-10xl: 10rem;
+}
+
+* {
+    margin: 0;
+    line-height: calc(1em + 0.5rem);
+}
+/* 4 */
+
+.light-mode {
+    --text: #1e1f2b;
+    --background: #fdfdfcff;
+    --primary1: #674e97ff;
+    --primary2: #503d76ff;
+    --primary3: #423262ff;
+    --secondary1: #d1d1e0;
+    --secondary2: #a3a3c2;
+    --secondary3: #7575a3;
+    --accent: #f82571ff;
+}
+
+body {
+    /* font-family: 'Jost', sans-serif; */
+    /* font-family: 'Fira Sans Condensed', sans-serif; */
+    /* font-family: 'Raleway', sans-serif; */
+    /* font-family: 'Noto Sans', sans-serif; */
+    font-family: 'Montserrat Alternates', sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+    user-select: none;
+}
+
+button {
+    display: inline-block;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: inherit;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+strong {
+    color: var(--accent);
+}
+
+::selection {
+    background: var(--accent);
+    color: var(--secondary3);
+}
+
+
+/* Scrollbar */
+body::-webkit-scrollbar {
+    width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    outline: 1px solid var(--primary);
+}

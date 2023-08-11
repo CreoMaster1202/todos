@@ -1,0 +1,44 @@
+{% extends "main.html" %}
+{% block content %}
+    <form action="{{ url_for('views.create_list') }}" method="POST">
+        <input type="text" name="name" placeholder="Name me...">
+        <input type="hidden" name="user_id" value="{{ user.id }}">
+        <br>
+        <button class="btn" type="submit">add</button>
+    </form>
+    {% for list in user.lists %}
+        <h1>List: {{ list.name }}</h1>
+            <form action="{{ url_for('views.edit_list', list_id=list.id) }}" method="POST">
+                <input type="text" name="name" value="{{ list.name }}" placeholder="edit me...">
+                <button class="btn" type="submit">Save</button>
+            </form>
+            <form action="{{ url_for('views.delete_list', list_id=list.id) }}" method="POST">
+                <button class="btn" type="submit">X</button>
+            </form>
+            <ol>
+                <form action="{{ url_for('views.create_item') }}" method="POST">
+                    <input type="text" name="item" placeholder="Nothing to do?">
+                    <input type="hidden" name="list_id" value="{{ list.id }}">
+                    <button class="btn" type="submit">+</button>
+                </form>
+                {% for item in list.items %}
+                    <li >
+                        <h4>{{ item.item }}</h4>
+                        <form action="{{ url_for('views.edit_item', item_id=item.id) }}" method="POST">
+                            <input type="text" name="item" value="{{ item.item }}" placeholder="to do...">
+                            <button class="btn" type="submit">Save</button>
+                        </form>
+                        <form action="{{ url_for('views.toggle_item', item_id=item.id) }}">
+                            <input type="submit" name="checked" class="item-checkbox" value="{% if item.complete %}V{% else %}O{% endif %}"> 
+                        </form>
+                        <form action="{{ url_for('views.delete_item', item_id=item.id) }}" method="POST">
+                            <button class="btn" type="submit">X</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ol>
+            
+    {% endfor %}
+    <br>
+    
+{% endblock %}

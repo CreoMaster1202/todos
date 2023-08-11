@@ -1,0 +1,48 @@
+.enter {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    gap: 2rem;
+}
+
+.enter__input {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem;
+}
+
+input[type=password], input[type=text], input[type=email] {
+    width: 30ch;
+    background-color: var(--secondary1);
+    color: var(--text);
+    border: 1px solid var(--secondary3);
+    border-radius: .2rem;
+    padding: .5rem 1rem;
+}
+
+/* xs */
+@media (min-width: 475px) {
+
+    input[type=password], input[type=text], input[type=email] {
+        width: 40ch;
+    }
+}
+
+/* sm */
+/* @media (min-width: 640px) {} */
+
+/* md */
+/* @media (min-width: 768px) {} */
+
+/* lg */
+/* @media (min-width: 1024px) {} */
+
+/* xl */
+/* @media (min-width: 1280px) {} */
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */

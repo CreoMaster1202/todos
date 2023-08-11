@@ -1,0 +1,149 @@
+
+.about__content {
+    font-size: var(--size-sm);
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    /* border: 1px solid red; */
+}
+
+.about {
+    width: 38ch;
+    padding: 1.5rem;
+    /* border: 1px solid red; */
+    margin: 1rem;
+}
+
+.about__title {
+    font-size: var(--size-4xl);
+    margin-block: 2rem;
+}
+
+.docs {
+    width: 38ch;
+    padding: 1.5rem;
+    margin: 1rem;
+    border-radius: 2rem;
+    border: 1px solid var(--background);
+    background-color: var(--secondary1);
+    
+    transition: all .3s;
+}
+
+.docs:hover {
+    transform: scale(1.1);
+    border: 1px solid var(--secondary3);
+}
+
+.docs__description {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.docs__description h4 {
+    padding-block: .3rem;
+}
+
+/* xs */
+/* @media (min-width: 475px) {} */
+
+/* sm */
+@media (min-width: 640px) {
+    .about__content {
+        font-size: var(--size-base);
+    }
+    .about {
+        width: 46ch;
+    }
+
+    .about__title {
+        font-size: var(--size-5xl);
+        margin-block: 2rem;
+    }
+
+    .docs {
+        width: 44ch;
+    }
+}
+
+/* md */
+@media (min-width: 768px) {
+
+    .about__content {
+        font-size: var(--size-lg);
+    }
+
+    .about {
+        width: 55ch;
+        margin-bottom: 5em;
+    }
+
+    .about__title {
+        font-size: var(--size-6xl);
+    }
+
+    .docs__description {
+        padding: 1.5rem;
+        gap: 1.3rem;
+    }
+
+    .docs {
+        width: 55ch;
+    }
+}
+
+/* lg */
+@media (min-width: 1024px) {
+    .about {
+        margin-bottom: 7em;
+    }
+
+    .about__title {
+        font-size: var(--size-7xl);
+    }
+    .about {
+        width: 60ch;
+        margin-bottom: 5em;
+    }
+
+    .about__title {
+        font-size: var(--size-6xl);
+    }
+
+    .docs__description {
+        padding: 1.5rem;
+        gap: 1.3rem;
+    }
+
+    .docs {
+        width: 60ch;
+    }
+}
+
+
+/* xl */
+@media (min-width: 1280px) {
+    .about {
+        width: 48ch;
+        margin-bottom: 5em;
+    }
+
+    .about__title {
+        font-size: var(--size-6xl);
+    }
+
+    .docs__description {
+        padding: 2rem;
+        gap: 1.3rem;
+    }
+
+    .docs {
+        width: 50ch;
+    }
+}
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */

@@ -29,13 +29,13 @@
                             <!-- Item schema -->
                             <li class="todo__item">
                                 <!-- Name of the item -->
-                                <h4 class="item__title" onclick="showCard(event)">.{{ item.item }}</h4>
+                                <p class="item__title" onclick="showCard(event)">> {{ item.item }}</p>
                                 
                                 <!-- Editing window -->
                                 <div class="editcard" style="display: none;">
                                     <form class="item-input" action="{{ url_for('views.edit_item', item_id=item.id) }}" method="POST">
-                                        <textarea name="item" placeholder="to do...">{{ item.item }}</textarea>
-                                        <button class="btn" type="submit">Save</button>
+                                        <textarea name="item" placeholder="edit me...">{{ item.item }}</textarea>
+                                        <button class="btn" name="item" type="submit">Save</button>
                                     </form>
 
                                     <form action="{{ url_for('views.delete_item', item_id=item.id) }}" method="POST">
@@ -45,7 +45,7 @@
 
                                 <!-- The checkbox -->
                                 <form action="{{ url_for('views.toggle_item', item_id=item.id) }}">
-                                    <input type="submit" name="checked" class="item-checkbox" value="{% if item.complete %}V{% else %}O{% endif %}"> 
+                                    <input type="submit" name="checked" class="item-checkbox" value="{% if item.complete %}O{% else %} {% endif %}"> 
                                 </form>
 
                             </li>

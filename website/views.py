@@ -5,12 +5,13 @@ from .models import User, Items, Lists
 
 views = Blueprint('views', __name__)
 
-
+# Landing page
 @views.route('/')
 @views.route('/landing')
 def landing():
     return render_template("landing.html")
 
+# About page
 @views.route('/about')
 def about():
     return render_template("about.html")
@@ -22,6 +23,7 @@ def todos():
     user = User.query.get(current_user.id)
     return render_template("todos.html", user=user)
 
+# Creating the lists
 @views.route('/lists/create', methods=['GET', 'POST'])
 @login_required
 def create_list():
@@ -32,6 +34,7 @@ def create_list():
     db.session.commit()
     return redirect(url_for('views.todos'))
 
+# Editing the lists
 @views.route('/todos/<int:list_id>/edit', methods=['GET', 'POST'])
 @login_required
 def edit_list(list_id):
@@ -41,6 +44,7 @@ def edit_list(list_id):
     db.session.commit()
     return redirect(url_for('views.todos'))
 
+# Deleting the lists
 @views.route('/todos/<int:list_id>/delete', methods=['POST'])
 @login_required
 def delete_list(list_id):
@@ -51,6 +55,7 @@ def delete_list(list_id):
     db.session.commit()
     return redirect(url_for('views.todos'))
 
+# Adding items to the lists
 @views.route('/items/create', methods=['POST'])
 def create_item():
     description = request.form['item']
@@ -60,6 +65,7 @@ def create_item():
     db.session.commit()
     return redirect(url_for('views.todos'))
 
+# Editing the items
 @views.route('/items/<int:item_id>/edit', methods=['POST'])
 def edit_item(item_id):
     description = request.form['item']
@@ -68,6 +74,7 @@ def edit_item(item_id):
     db.session.commit()
     return redirect(url_for('views.todos'))
 
+# Checking the items
 @views.route('/items/<int:item_id>/toggle', methods=['GET', 'POST'])
 def toggle_item(item_id):
     item = Items.query.get(item_id)
@@ -75,6 +82,7 @@ def toggle_item(item_id):
     db.session.commit()
     return redirect(url_for('views.todos'))
 
+# Deleting the items
 @views.route('/items/<int:item_id>/delete', methods=['POST'])
 def delete_item(item_id):
     item = Items.query.get(item_id)

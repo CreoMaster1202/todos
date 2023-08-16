@@ -65,6 +65,28 @@
     transition: all 0.7s ease-in-out;
 }
 
+.alert__conteiner {
+    position: relative;
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+}
+
+.alert {
+    position: fixed;
+    /* border: 1px solid red; */
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.error {
+    background-color: red;
+}
+
+.success {
+    background-color: green;
+}
+
 /* xs */
 @media (min-width: 475px) {
     .container {

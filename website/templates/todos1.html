@@ -1,0 +1,38 @@
+{% extends "main.html"%}
+{% block content %}
+    <!-- display lists -->
+    <div id="lists">
+        {% for list in user.lists %}
+            <div id="list-{{ list.id }}">{{ list.name }}
+                <div class="edit-window">
+                    <button class="btn edit-list" data-id="{{ list.id }}">edit</button>
+                    <button class="btn delete-list" data-id="{{ list.id }}">delete</button>
+                </div>
+            </div>
+
+            <!-- display list items -->
+            {% for item in list.items %}
+                <div id="item-{{ item.id }}">{{ item.item }}
+                    <input type="checkbox" class="toggle-item" data-id="{{ item.id }}" {% if item.complete %}checked{% endif %}>
+                    <div class="edit-window">
+                        <button class="btn edit-item" data-id="{{ item.id }}">edit</button>
+                        <button class="btn delete-item" data-id="{{ item.id }}">delete</button>
+                    </div>
+                </div>
+            {% endfor %}
+            <br>
+            <!-- creation of items -->
+            <form class="add-item-form">
+                <input type="hidden" name="list_id" value="{{ list.id }}">
+                <textarea name="item" class="item__create textarea" rows="1" placeholder="nothing to do?"></textarea>
+                <button class="btn" type="submit">add</button>
+            </form>
+        {% endfor %}
+        <br>
+        <!-- creation of lists -->
+        <form id="add-list-form">
+            <textarea name="name" class="list__create textarea" rows="1" placeholder="name me"></textarea>
+            <button class="btn" type="submit">add</button>
+        </form>
+    </div>
+{% endblock %}

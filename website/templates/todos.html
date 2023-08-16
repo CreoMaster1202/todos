@@ -1,80 +1,33 @@
 {% extends "main.html" %}
 {% block content %}
-    <div class="todo__list-grid">
-        <!-- the Lists -->
-        {% for list in user.lists %}
-            <!-- List schema -->
-            <div class="todo__list">
-                <!-- Content of the list -->
-                <div class="todo__list-content">
-                    <!-- Name of the list which can be clicked -->
-                    <h1 class="list__title" onclick="showCard(event)">#{{ list.name }}</h1>
-                    
-                    <!-- Editing window -->
-                    <div class="editcard" style="display: none;">
-                        <form class="list-input" action="{{ url_for('views.edit_list', list_id=list.id) }}" method="POST">
-                            <h1><textarea name="name" placeholder="edit me...">{{ list.name }}</textarea></h1>
-                            <!-- <h1><input type="text" name="name" value="{{ list.name }}" placeholder="edit me..."></h1> -->
-                            <button onclick="saveChanges()" class="btn" type="submit">Save</button>
-                        </form>
-
-                        <form action="{{ url_for('views.delete_list', list_id=list.id) }}" method="POST">
-                            <button class="btn" type="submit">X</button>
-                        </form>
+    {% for list in user.lists %}
+        <h1 class="list__title">{{ list.name }}</h1>
+        <div class="edit-window" style="display: none;">
+            <input type="text" class="edit-list-input" value="{{ list.name }}">
+            <button class="btn save-edit-list" data-id="{{ list.id }}">Save</button>
+            <button class="btn delete-list" data-id="{{ list.id }}">X</button>
+        </div>
+        <ul>
+            {% for item in list.items %}
+                <li class="todo__item">
+                    <p class="item__title">{{ item.item }}</p>
+                    <input type="checkbox" class="toggle-item" data-id="{{ item.id }}" {% if item.complete %}checked{% endif %}>
+                    <div class="edit-window" style="display: none;">
+                        <input type="text" class="edit-item-input" value="{{ item.item }}">
+                        <button class="btn save-edit-item" data-id="{{ item.id }}">Save</button>
+                        <button class="btn delete-item" data-id="{{ item.id }}">X</button>
                     </div>
-                    
-                    <!-- The Items -->
-                    <ul>
-                        {% for item in list.items %}
-                            <!-- Item schema -->
-                            <li class="todo__item">
-                                <!-- Name of the item -->
-                                <p class="item__title" onclick="showCard(event)">> {{ item.item }}</p>
-                                
-                                <!-- Editing window -->
-                                <div class="editcard" style="display: none;">
-                                    <form class="item-input" action="{{ url_for('views.edit_item', item_id=item.id) }}" method="POST">
-                                        <textarea name="item" placeholder="edit me...">{{ item.item }}</textarea>
-                                        <button class="btn" name="item" type="submit">Save</button>
-                                    </form>
-
-                                    <form action="{{ url_for('views.delete_item', item_id=item.id) }}" method="POST">
-                                        <button class="btn" type="submit">X</button>
-                                    </form>
-                                </div>
-
-                                <!-- The checkbox -->
-                                <form action="{{ url_for('views.toggle_item', item_id=item.id) }}">
-                                    <input type="submit" name="checked" class="item-checkbox" value="{% if item.complete %}O{% else %} {% endif %}"> 
-                                </form>
-
-                            </li>
-                        {% endfor %}
-                    </ul>
-
-                    <!-- Creating new items -->
-                    <form class="list-input" action="{{ url_for('views.create_item') }}" method="POST">
-                        <div class="item__create">
-                            <textarea name="item" class="item-naming" placeholder="Nothing to do?"></textarea>
-                            <!-- <input type="text" name="item" placeholder="Nothing to do?"> -->
-                            <input type="hidden" name="list_id" value="{{ list.id }}">
-                            <button class="btn" type="submit">+</button>
-                        </div>
-                    </form>
-
-                </div>
-            </div>
-                
-        {% endfor %}
-
-        <!-- Creating new lists -->
-        <form action="{{ url_for('views.create_list') }}" method="POST">
-            <div class="list__create list-input">
-                <input type="hidden" name="user_id" value="{{ user.id }}">
-                <input type="text" name="name" placeholder="name me">
-                <!-- <h1><textarea name="name" placeholder="Name me"></textarea></h1> -->
-                <button class="btn" type="submit">add</button>
-            </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <form class="add-item-form">
+            <input type="hidden" name="list_id" value="{{ list.id }}">
+            <textarea name="item" class="item-naming"></textarea>
+            <button class="btn add-item">+</button>
         </form>
-    </div>
+    {% endfor %}
+    <form id="add-list-form">
+        <textarea name="name"></textarea>
+        <button class="btn add-list">add</button>
+    </form>
 {% endblock %}

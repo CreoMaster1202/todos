@@ -1,33 +1,35 @@
 {% extends "main.html" %}
 {% block content %}
-    {% for list in user.lists %}
-        <h1 class="list__title">{{ list.name }}</h1>
-        <div class="edit-window" style="display: none;">
-            <input type="text" class="edit-list-input" value="{{ list.name }}">
-            <button class="btn save-edit-list" data-id="{{ list.id }}">Save</button>
-            <button class="btn delete-list" data-id="{{ list.id }}">X</button>
-        </div>
-        <ul>
-            {% for item in list.items %}
-                <li class="todo__item">
-                    <p class="item__title">{{ item.item }}</p>
-                    <input type="checkbox" class="toggle-item" data-id="{{ item.id }}" {% if item.complete %}checked{% endif %}>
-                    <div class="edit-window" style="display: none;">
-                        <input type="text" class="edit-item-input" value="{{ item.item }}">
-                        <button class="btn save-edit-item" data-id="{{ item.id }}">Save</button>
-                        <button class="btn delete-item" data-id="{{ item.id }}">X</button>
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
-        <form class="add-item-form">
-            <input type="hidden" name="list_id" value="{{ list.id }}">
-            <textarea name="item" class="item-naming"></textarea>
-            <button class="btn add-item">+</button>
-        </form>
-    {% endfor %}
+    <div id="lists">
+        {% for list in user.lists %}
+            <h1 class="list__title">#{{ list.name }}</h1>
+            <div class="edit-window" style="display: none;">
+                <input type="text" class="edit-list-input" value="{{ list.name }}">
+                <button class="btn save-edit-list" data-id="{{ list.id }}">Save</button>
+                <button class="btn delete-list" data-id="{{ list.id }}">X</button>
+            </div>
+            <ul>
+                {% for item in list.items %}
+                    <li class="todo__item">
+                        <p class="item__title">{{ item.item }}</p>
+                        <input type="checkbox" class="toggle-item" data-id="{{ item.id }}" {% if item.complete %}checked{% endif %}>
+                        <div class="edit-window" style="display: none;">
+                            <input type="text" class="edit-item-input" value="{{ item.item }}">
+                            <button class="btn save-edit-item" data-id="{{ item.id }}">Save</button>
+                            <button class="btn delete-item" data-id="{{ item.id }}">X</button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <form class="add-item-form">
+                <input type="hidden" name="list_id" value="{{ list.id }}">
+                <textarea name="item" class="item-naming"></textarea>
+                <button class="btn add-item">+</button>
+            </form>
+        {% endfor %}
+    </div>
     <form id="add-list-form">
         <textarea name="name"></textarea>
-        <button class="btn add-list">add</button>
+        <button type="submit" class="btn add-list">add</button>
     </form>
 {% endblock %}

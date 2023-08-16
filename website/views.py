@@ -23,7 +23,8 @@ def about():
 @login_required
 def todos():
     user = User.query.get(current_user.id)
-    return render_template("todos.html", user=user)
+    lists = Lists.query.filter_by(user_id=current_user.id)
+    return render_template("todos.html", user=user, lists=lists)
 
 # Creating the lists
 @views.route('/lists/create', methods=['GET', 'POST'])

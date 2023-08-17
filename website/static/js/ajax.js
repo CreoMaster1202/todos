@@ -1,36 +1,20 @@
-// Creating a new list
-$('#add-list-form').on('submit', function(e) {
-    e.preventDefault();
-    var name = $(this).find('textarea[name="name"]').val();
-    $.ajax({
-        url: '/lists/create',
-        method: 'POST',
-        data: {name: name},
-        success: function(data) {
-            // Add the new list to the page
-            var list = $('<div class="list"></div>');
-            list.append('<h1 class="list__title">#' + data.name + '</h1>');
-            list.append('<ul></ul>');
-            $('#lists').append(list);
-        }
+$(document).ready(function() {
+    $('#add-list-form').on('submit', function(event) {
+        event.preventDefault();
+        var name = $(this).find('input[name="name"]').val();
+        $.post('/add_list', {name: name}, function(data) {
+            var newList = $('<li data-id="' + data.id + '"><h2>' + name + '</h2><form class="add-item-form"><input type="text" name="description" placeholder="Item description"><button type="submit">Add Item</button></form><ul class="items"></ul></li>');
+            $('#lists').append(newList);
+        });
     });
-});
 
-// Creating a new item
-$('.add-item-form').on('submit', function(e) {
-    e.preventDefault();
-    var item = $(this).find('textarea[name="item"]').val();
-    var list_id = $(this).find('input[name="list_id"]').val();
-    $.ajax({
-        url: '/items/create',
-        method: 'POST',
-        data: {item: item, list_id: list_id},
-        success: function(data) {
-            // Add the new item to the page
-            var li = $('<li class="todo__item"></li>');
-            li.append('<p class="item__title">' + data.item + '</p>');
-            li.append('<input type="checkbox" class="toggle-item" data-id="' + data.id + '">');
-            $('#lists').find('ul[data-id="' + data.list_id + '"]').append(li);
-        }
+    $('#lists').on('submit', '.add-item-form', function(event) {
+        event.preventDefault();
+        var description = $(this).find('input[name="description"]').val();
+        var listId = $(this).closest('li').data('id');
+        $.post('/add_item/' + listId, {description: description}, function(data) {
+            var newItem = $('<li>' + description + '</li>');
+            $(event.target).siblings('.items').append(newItem);
+        });
     });
 });

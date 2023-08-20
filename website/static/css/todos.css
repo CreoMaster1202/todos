@@ -1,5 +1,82 @@
-.list_card {
-    padding: .1rem;
-    margin: .2rem;
+#lists {
+    /* width: 100%; */
+    /* gap: 1rem; */
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    border: 1px solid red;
+}
+
+.todo-list {
+    margin-top: 1rem;
+    padding: 1rem;
+    /* margin: .2rem; */
+    border-radius: .5rem;
+    border: 1px solid red;
     background-color: var(--secondary2);
+    width: 40ch;
+}
+
+textarea {
+    color: var(--text);
+    font-size: 1rem;
+    width: 100%;
+    height: 3.125rem;
+    padding: 1rem;
+    margin-block: 1rem;
+    resize: none;
+    border-radius: .3rem;
+    outline: none;
+    background-color: var(--secondary2);
+    border: 1px solid var(--secondary1);
+    transition: border .3s, box-shadow .3s, background-color .3s;
+    scrollbar-width: none;
+    max-height: 15rem;
+}
+
+textarea:is(:focus, :valid) {
+    border: 1px solid var(--secondary3);
+    /* transform: scale(1.03); */
+}
+
+input[type="checkbox"] {
+    display: inline-block;
+    position: relative;
+    appearance: none;
+    -webkit-appearance: none;
+    height: 1rem;
+    width: 1rem;
+    background-color: var(--secondary2);
+    border-radius: .2rem;
+    border: 2px solid var(--secondary1);
+    cursor: pointer;
+    transition: background-color .1s;
+}
+
+input[type="checkbox"]:hover {
+    background-color: var(--secondary3);
+}
+
+input[type="checkbox"]::after {
+    display: none;
+    position: absolute;
+    bottom: -3px;
+    left: -2px;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 1.4rem;
+    text-shadow: -1px -1px 0 var(--secondary2), 1px -1px 0 var(--secondary2), -1px 1px 0 var(--secondary2), 1px 1px 0 var(--secondary2);
+    content: "\f00c";
+    color: var(--accent);
+
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--secondary2);
+    border: 2px solid var(--accent);
+    /* transition: all .3s; */
+}
+
+input[type="checkbox"]:checked::after {
+    display: block;
 }

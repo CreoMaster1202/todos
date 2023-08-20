@@ -3,11 +3,11 @@
 
     <ul id="lists">
         {% for list in lists %}
-            <li data-id="{{ list.id }}">
+            <li class="todo-list" data-id="{{ list.id }}">
                 <h2>{{ list.name }}</h2>
                 <div class="editcard" style="display: none;">
                     <form class="edit-list-form">
-                        <textarea name="name">{{ list.name }}</textarea>
+                        <textarea required name="name">{{ list.name }}</textarea>
                         <button type="submit">Save</button>
                     </form>
                     <form class="delete-list-form">
@@ -21,7 +21,7 @@
                             <input type="checkbox" class="item-checkbox" {% if item.checked %}checked{% endif %}>
                             <div class="editcard" style="display: none;">
                                 <form class="edit-item-form">
-                                    <textarea name="description">{{ item.description }}</textarea>
+                                    <textarea required name="description" placeholder="edit me...">{{ item.description }}</textarea>
                                     <button type="submit">Save</button>
                                 </form>
                                 <form class="delete-item-form">
@@ -32,7 +32,7 @@
                     {% endfor %}
                 </ul>
                 <form class="add-item-form">
-                    <textarea name="description" placeholder="Item description"></textarea>
+                    <textarea required name="description" placeholder="Item description"></textarea>
                     <button type="submit">Add Item</button>
                 </form>
             </li>
@@ -40,8 +40,10 @@
     </ul>
 
     <form id="add-list-form">
-        <textarea name="name" placeholder="List name"></textarea>
+        <textarea required name="name" placeholder="List name"></textarea>
         <button type="submit">Add List</button>
     </form>
+    <script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script defer src="static/js/msnry.js"></script>
 
 {% endblock %}

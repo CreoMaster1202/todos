@@ -1,6 +1,4 @@
 #lists {
-    /* width: 100%; */
-    /* gap: 1rem; */
     list-style: none;
     margin: 0 auto;
     padding: 0;
@@ -8,13 +6,85 @@
 }
 
 .todo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     margin-top: 1rem;
     padding: 1rem;
-    /* margin: .2rem; */
+    position: relative;
     border-radius: .5rem;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     background-color: var(--secondary2);
-    width: 40ch;
+    width: 46ch;
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0;
+    list-style: none;
+    position: relative;
+}
+
+.todo-item {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: .1rem;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid var(--secondary3);
+    border-radius: .3rem;
+    background-color: var(--secondary2);
+    transition: background-color .3s;
+}
+
+.todo-item:hover {
+    background-color: var(--secondary3);
+    cursor: pointer;
+
+}
+
+.editcard {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+    border-radius: .5rem;
+    background-color: var(--secondary1);
+    z-index: 22;
+}
+
+.edit-list-form {
+    display: flex;
+    gap: 1rem;
+}
+
+.edit-item-form {
+    display: flex;
+    gap: 1rem;
+}
+
+.add-list-form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#add-list-form {
+    margin-top: 1rem;
+    width: 33%;
+    gap: 1rem;
+    background-color: var(--secondary2);
+    border-radius: .5rem;
+    padding: 1rem;
+    border: 1px solid red;
 }
 
 textarea {
@@ -31,7 +101,7 @@ textarea {
     border: 1px solid var(--secondary1);
     transition: border .3s, box-shadow .3s, background-color .3s;
     scrollbar-width: none;
-    max-height: 15rem;
+    max-height: 25rem;
 }
 
 textarea:is(:focus, :valid) {
@@ -80,3 +150,21 @@ input[type="checkbox"]:checked {
 input[type="checkbox"]:checked::after {
     display: block;
 }
+
+/* xs */
+/* @media (min-width: 475px) {} */
+
+/* sm */
+/* @media (min-width: 640px) {} */
+
+/* md */
+/* @media (min-width: 768px) {} */
+
+/* lg */
+/* @media (min-width: 1024px) {} */
+
+/* xl */
+/* @media (min-width: 1280px) {} */
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */

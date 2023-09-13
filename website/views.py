@@ -31,6 +31,7 @@ def todos():
 @login_required
 def create_list():
     name = request.form['name']
+    # name = name.replace('\n', '<br/>')
     new_list = Lists(name=name, user_id=current_user.id)
     db.session.add(new_list)
     db.session.commit()
@@ -40,6 +41,7 @@ def create_list():
 @login_required
 def edit_list(list_id):
     name = request.form['name']
+    # name = name.replace('\n', '<br/>')
     list = Lists.query.get(list_id)
     list.name = name
     db.session.commit()
@@ -49,14 +51,18 @@ def edit_list(list_id):
 @login_required
 def delete_list(list_id):
     list = Lists.query.get(list_id)
+    for item in list.items:
+        db.session.delete(item)
     db.session.delete(list)
     db.session.commit()
     return {'id': list.id}
 
 # Adding items to the lists
 @views.route('/add_item/<int:list_id>', methods=['GET', 'POST'])
+@login_required
 def create_item(list_id):
     description = request.form['description']
+    # description = description.replace('\n', '<br/>')
     user_id = current_user.id
     new_item = Items(description=description, checked=False, user_id=user_id, list_id=list_id)
     db.session.add(new_item)
@@ -76,6 +82,7 @@ def check_item(item_id):
 @login_required
 def edit_item(item_id):
     description = request.form['description']
+    # description = description.replace('\n', '<br/>')
     item = Items.query.get(item_id)
     item.description = description
     db.session.commit()

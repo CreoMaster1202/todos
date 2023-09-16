@@ -4,7 +4,7 @@
     <ul id="lists">
         {% for list in lists %}
             <li class="todo-list" data-id="{{ list.id }}">
-                <h2 class="list-name" data-id="{{ list.id }}">{{ list.name }}</h2>
+                <h2 class="list-name preserve-line-breaks" data-id="{{ list.id }}">{{ list.name }}</h2>
                 <div class="editcard" style="display: none;">
                     <form class="edit-list-form">
                         <textarea required name="name">{{ list.name }}</textarea>
@@ -17,7 +17,7 @@
                 <ul class="items">
                     {% for item in list.items %}
                         <li class="todo-item" data-id="{{ item.id }}">
-                            <span class="item-description">{{ item.description|safe }}</span>
+                            <span class="item-description preserve-line-breaks">{{ item.description|safe }}</span>
                             <input type="checkbox" class="item-checkbox" {% if item.checked %}checked{% endif %}>
                             <div class="editcard" style="display: none;">
                                 <form class="edit-item-form">
@@ -32,7 +32,7 @@
                     {% endfor %}
                 </ul>              
                 <form class="add-item-form">
-                    <textarea required name="description" placeholder="Item description"></textarea>
+                    <textarea required name="description" placeholder="Item description" autocomplete="off"></textarea>
                     <button type="submit">Add Item</button>
                 </form>
             </li>
@@ -40,7 +40,7 @@
     </ul>
     <div class="add-list-form">
         <form id="add-list-form">
-            <textarea required name="name" placeholder="List name"></textarea>
+            <textarea required name="name" placeholder="List name" autocomplete="off"></textarea>
             <button type="submit">Add List</button>
         </form>
     </div>

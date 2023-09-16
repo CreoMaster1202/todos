@@ -87,6 +87,10 @@
     border: 1px solid red;
 }
 
+.preserve-line-breaks {
+    white-space: pre-wrap;
+}
+
 textarea {
     color: var(--text);
     font-size: 1rem;

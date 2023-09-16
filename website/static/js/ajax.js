@@ -1,3 +1,8 @@
+$(document).ready(function() {
+    $('.add-list-form textarea').val('');
+    $('.add-item-form textarea').val('');
+});
+
 // Create new lists
 $('.add-list-form').on('submit', function(event) {
     event.preventDefault();
@@ -7,16 +12,13 @@ $('.add-list-form').on('submit', function(event) {
         type: 'POST',
         data: { name: name },
         success: function(data) {
-            // Create a new list element
-            let newList = $('<li class="todo-list" data-id="' + data.id + '"><h2 class="list-name" data-id="' + data.id + '"></h2><div class="editcard" style="display: none;"><form class="edit-list-form"><textarea required name="name"></textarea><button type="submit">Save</button></form><form class="delete-list-form"><button type="submit">Delete</button></form></div><ul class="items"></ul><form class="add-item-form"><textarea required name="description" placeholder="Item description"></textarea><button type="submit">Add Item</button></form></li>');
-            newList.find('.list-name').text(name);  // Set the list name with line breaks
+            let newList = $('<li class="todo-list" data-id="' + data.id + '"><h2 class="list-name" data-id="' + data.id + '">' + name + '</h2><div class="editcard" style="display: none;"><form class="edit-list-form"><textarea required name="name">' + name + '</textarea><button type="submit">Save</button></form><form class="delete-list-form"><button type="submit">Delete</button></form></div><ul class="items"></ul><form class="add-item-form"><textarea required name="description" placeholder="Item description"></textarea><button type="submit">Add Item</button></form></li>');
+            newList.find('.list-name').html(name.replace(/\n/g, '<br>'));
             $('#lists').append(newList).masonry('appended', newList);
 
-            // Example: Initialize the Masonry layout after adding the new list
             $('#lists').masonry('reloadItems');
             $('#lists').masonry('layout');
 
-            // Clear the form input
             $(this).find('textarea[name="name"]').val('');
         }
     });
@@ -32,8 +34,9 @@ $(document).on('submit', '.edit-list-form', function(event) {
         type: 'POST',
         data: { name: name },
         success: function(data) {
-            $(event.target).closest('li').find('.list-name').text(name);
-            $(event.target).closest('.editcard').hide();
+            let $list = $(event.target).closest('.todo-list');
+            $list.find('.list-name').html(name.replace(/\n/g, '<br>'));
+            $list.find('.editcard').hide();
             $('#lists').masonry('reloadItems');
             $('#lists').masonry('layout');
         }
@@ -51,11 +54,10 @@ $(document).on('submit', '.delete-list-form', function(event) {
             let $list = $(event.target).closest('li');
             $list.remove();
             $('#lists').masonry('remove', $list).masonry('layout').masonry('reloadItems');
-            // Handle success (e.g., remove the list from the DOM)
         }
     });
-});
-
+    });
+    
 // Create a new item
 $(document).on('submit', '.add-item-form', function(event) {
     event.preventDefault();
@@ -66,9 +68,8 @@ $(document).on('submit', '.add-item-form', function(event) {
         type: 'POST',
         data: { description: description },
         success: function(data) {
-            // Handle success (e.g., display a success message)
-            let newItem = $('<li class="todo-item" data-id="' + data.id + '"><span class="item-description"></span><input type="checkbox" class="item-checkbox"><div class="editcard" style="display: none;"><form class="edit-item-form"><textarea required name="description" placeholder="edit me..."></textarea><button type="submit">Save</button></form><form class="delete-item-form"><button type="submit">Delete</button></form></div></li>');
-            newItem.find('.item-description').text(description);  // Set the item description with line breaks
+            let newItem = $('<li class="todo-item" data-id="' + data.id + '"><span class="item-description">' + description + '</span><input type="checkbox" class="item-checkbox"><div class="editcard" style="display: none;"><form class="edit-item-form"><textarea required name="description" placeholder="edit me...">' + description + '</textarea><button type="submit">Save</button></form><form class="delete-item-form"><button type="submit">Delete</button></form></div></li>');
+            newItem.find('.item-description').html(description.replace(/\n/g, '<br>'));
             let $items = $(event.target).siblings('.items');
             $items.append(newItem);
             $('#lists').masonry('appended', newItem);
@@ -90,7 +91,7 @@ $(document).on('submit', '.edit-item-form', function(event) {
         data: { description: description },
         success: function(data) {
             let $item = $(event.target).closest('li');
-            $item.find('.item-description').text(description);
+            $item.find('.item-description').html(description.replace(/\n/g, '<br>'));
             $item.find('.editcard').hide();
             $('#lists').masonry('reloadItems');
             $('#lists').masonry('layout');
@@ -108,7 +109,6 @@ $(document).on('submit', '.delete-item-form', function(event) {
         success: function(data) {
             $(event.target).closest('li').remove();
             $('#lists').masonry('layout');
-            // Handle success (e.g., remove the item from the DOM)
         }
     });
 });
@@ -130,23 +130,19 @@ $(document).on('change', '.item-checkbox', function() {
 // Show edit window for list name
 $(document).on('click', '.list-name', function() {
     let $editCard = $(this).siblings('.editcard');
-    // Hide all edit windows
-    $('.editcard').hide();
-    // Show the edit window for the clicked list name
+    $('.editcard').not($editCard).hide();
     $editCard.show();
-    // Set the textarea value to the current list name
-    let currentName = $(this).text();
+    let currentName = $(this).html().replace(/<br>/g, '\n');
     $editCard.find('textarea[name="name"]').val(currentName);
 });
 
 // Show edit window for item description
 $(document).on('click', '.item-description', function() {
     let $editCard = $(this).siblings('.editcard');
-    // Hide all edit windows
-    $('.editcard').hide();
-    // Show the edit window for the clicked item description
+    $('.editcard').not($editCard).hide();
     $editCard.show();
-    // Set the textarea value to the current item description
-    let currentDescription = $(this).text();
+    let currentDescription = $(this).html().replace(/<br>/g, '\n');
     $editCard.find('textarea[name="description"]').val(currentDescription);
 });
+
+newItem.find('.item-description').css('white-space', 'pre-line');

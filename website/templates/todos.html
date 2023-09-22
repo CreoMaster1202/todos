@@ -8,10 +8,10 @@
                 <div class="editcard" style="display: none;">
                     <form class="edit-list-form">
                         <textarea required name="name">{{ list.name }}</textarea>
-                        <button type="submit">Save</button>
+                        <button class="btn" type="submit">Save</button>
                     </form>
                     <form class="delete-list-form">
-                        <button type="submit">Delete</button>
+                        <button class="btn" type="submit">Delete</button>
                     </form>
                 </div>
                 <ul class="items">
@@ -22,10 +22,10 @@
                             <div class="editcard" style="display: none;">
                                 <form class="edit-item-form">
                                     <textarea required name="description" placeholder="edit me...">{{ item.description|safe }}</textarea>
-                                    <button type="submit">Save</button>
+                                    <button class="btn" type="submit">Save</button>
                                 </form>
                                 <form class="delete-item-form">
-                                    <button type="submit">Delete</button>
+                                    <button class="btn" type="submit">Delete</button>
                                 </form>
                             </div>
                         </li>
@@ -33,7 +33,7 @@
                 </ul>              
                 <form class="add-item-form">
                     <textarea required name="description" placeholder="Item description" autocomplete="off"></textarea>
-                    <button type="submit">Add Item</button>
+                    <button class="btn" type="submit">Add Item</button>
                 </form>
             </li>
         {% endfor %}
@@ -41,7 +41,7 @@
     <div class="add-list-form">
         <form id="add-list-form">
             <textarea required name="name" placeholder="List name" autocomplete="off"></textarea>
-            <button type="submit">Add List</button>
+            <button class="btn" type="submit">Add List</button>
         </form>
     </div>
 

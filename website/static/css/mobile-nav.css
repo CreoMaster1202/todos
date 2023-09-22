@@ -24,7 +24,7 @@
 
 .header__sun {
     display: block;
-    color: var(--secondary3);
+    color: var(--primary1);
     margin: .8em 0;
     width: var(--size-2xl);
     height: var(--size-2xl);

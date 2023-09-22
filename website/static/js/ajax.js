@@ -12,7 +12,7 @@ $('.add-list-form').on('submit', function(event) {
         type: 'POST',
         data: { name: name },
         success: function(data) {
-            let newList = $('<li class="todo-list" data-id="' + data.id + '"><h2 class="list-name" data-id="' + data.id + '">' + name + '</h2><div class="editcard" style="display: none;"><form class="edit-list-form"><textarea required name="name">' + name + '</textarea><button type="submit">Save</button></form><form class="delete-list-form"><button type="submit">Delete</button></form></div><ul class="items"></ul><form class="add-item-form"><textarea required name="description" placeholder="Item description"></textarea><button type="submit">Add Item</button></form></li>');
+            let newList = $('<li class="todo-list" data-id="' + data.id + '"><h2 class="list-name" data-id="' + data.id + '">' + name + '</h2><div class="editcard" style="display: none;"><form class="edit-list-form"><textarea required name="name">' + name + '</textarea><button class="btn" type="submit">Save</button></form><form class="delete-list-form"><button class="btn" type="submit">Delete</button></form></div><ul class="items"></ul><form class="add-item-form"><textarea required name="description" placeholder="Item description"></textarea><button class="btn" type="submit">Add Item</button></form></li>');
             newList.find('.list-name').html(name.replace(/\n/g, '<br>'));
             $('#lists').append(newList).masonry('appended', newList);
 
@@ -68,7 +68,7 @@ $(document).on('submit', '.add-item-form', function(event) {
         type: 'POST',
         data: { description: description },
         success: function(data) {
-            let newItem = $('<li class="todo-item" data-id="' + data.id + '"><span class="item-description">' + description + '</span><input type="checkbox" class="item-checkbox"><div class="editcard" style="display: none;"><form class="edit-item-form"><textarea required name="description" placeholder="edit me...">' + description + '</textarea><button type="submit">Save</button></form><form class="delete-item-form"><button type="submit">Delete</button></form></div></li>');
+            let newItem = $('<li data-tilt data-tilt-reverse="true" data-tilt-scale="1.01" data-tilt-max="1" data-tilt-speed="800" data-tilt-perspective="500" class="todo-item" data-id="' + data.id + '"><span class="item-description">' + description + '</span><input type="checkbox" class="item-checkbox"><div class="editcard" style="display: none;"><form class="edit-item-form"><textarea required name="description" placeholder="edit me...">' + description + '</textarea><button class="btn" type="submit">Save</button></form><form class="delete-item-form"><button class="btn" type="submit">Delete</button></form></div></li>');
             newItem.find('.item-description').html(description.replace(/\n/g, '<br>'));
             let $items = $(event.target).siblings('.items');
             $items.append(newItem);
@@ -115,17 +115,29 @@ $(document).on('submit', '.delete-item-form', function(event) {
 
 // Check/uncheck item
 $(document).on('change', '.item-checkbox', function() {
-    let itemId = $(this).closest('.todo-item').data('id');
-    let checked = $(this).prop('checked');
+    let $checkbox = $(this);
+    let itemId = $checkbox.closest('.todo-item').data('id');
+    let checked = $checkbox.prop('checked');
+    
     $.ajax({
         url: '/check_item/' + itemId,
         type: 'POST',
         data: { checked: checked },
         success: function(data) {
-            // Handle success (e.g., display a success message)
+            animateCheckbox($checkbox, checked);
         }
     });
 });
+
+function animateCheckbox($checkbox, checked) {
+    let $checkboxIcon = $checkbox.siblings('.checkbox-icon');
+    
+    if (checked) {
+        $checkboxIcon.animate({ opacity: 1 }, 300);
+    } else {
+        $checkboxIcon.animate({ opacity: 0 }, 300);
+    }
+}
 
 // Show edit window for list name
 $(document).on('click', '.list-name', function() {

@@ -3,13 +3,13 @@
     flex-direction: column;
     align-items: start;
     /* background-color: var(--secondary); */
-    color: var(--secondary3);
+    color: var(--primary1);
     font-size: var(--size-sm);
     /* border: 1px solid red; */
 }
 
 .footer__divider {
-    border: 1px solid var(--secondary3);
+    border: 1px solid var(--primary1);
     width: 90%;
     margin-inline: auto;
 }

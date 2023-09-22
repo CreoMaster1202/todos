@@ -12,7 +12,7 @@
 
             <!-- display list items -->
             {% for item in list.items %}
-                <div id="item-{{ item.id }}">{{ item.item }}
+                <div id="item-{{ item.id }}" class="todo-item">{{ item.item }}
                     <input type="checkbox" class="toggle-item" data-id="{{ item.id }}" {% if item.complete %}checked{% endif %}>
                     <div class="edit-window">
                         <button class="btn edit-item" data-id="{{ item.id }}">edit</button>

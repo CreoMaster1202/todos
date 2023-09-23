@@ -3,9 +3,9 @@
 
     <ul id="lists">
         {% for list in lists %}
-            <li class="todo-list" data-id="{{ list.id }}">
+            <li data-tilt data-tilt-reverse="true" data-tilt-scale="1.01" data-tilt-max="1" data-tilt-speed="800" data-tilt-perspective="900" class="todo-list" data-id="{{ list.id }}">
                 <h2 class="list-name preserve-line-breaks" data-id="{{ list.id }}">{{ list.name }}</h2>
-                <div class="editcard" style="display: none;">
+                <div data-tilt data-tilt-reverse="true" data-tilt-scale="1.01" data-tilt-max="1" data-tilt-speed="800" data-tilt-perspective="400" class="editcard" style="display: none;">
                     <form class="edit-list-form">
                         <textarea required name="name">{{ list.name }}</textarea>
                         <button class="btn" type="submit">Save</button>
@@ -19,9 +19,9 @@
                         <li class="todo-item" data-id="{{ item.id }}">
                             <span class="item-description preserve-line-breaks">{{ item.description|safe }}</span>
                             <input type="checkbox" class="item-checkbox" {% if item.checked %}checked{% endif %}>
-                            <div class="editcard" style="display: none;">
+                            <div data-tilt data-tilt-reverse="true" data-tilt-scale="1.01" data-tilt-max="1" data-tilt-speed="800" data-tilt-perspective="400" class="editcard" style="display: none;">
                                 <form class="edit-item-form">
-                                    <textarea required name="description" placeholder="edit me...">{{ item.description|safe }}</textarea>
+                                    <textarea required name="description" placeholder="Edit me...">{{ item.description|safe }}</textarea>
                                     <button class="btn" type="submit">Save</button>
                                 </form>
                                 <form class="delete-item-form">
@@ -32,15 +32,15 @@
                     {% endfor %}
                 </ul>              
                 <form class="add-item-form">
-                    <textarea required name="description" placeholder="Item description" autocomplete="off"></textarea>
+                    <textarea required name="description" placeholder="Nothing to do?" autocomplete="off"></textarea>
                     <button class="btn" type="submit">Add Item</button>
                 </form>
             </li>
         {% endfor %}
     </ul>
     <div class="add-list-form">
-        <form id="add-list-form">
-            <textarea required name="name" placeholder="List name" autocomplete="off"></textarea>
+        <form data-tilt data-tilt-reverse="true" data-tilt-scale="1.01" data-tilt-max="1" data-tilt-speed="800" data-tilt-perspective="500" id="add-list-form">
+            <textarea required name="name" placeholder="Name me..." autocomplete="off"></textarea>
             <button class="btn" type="submit">Add List</button>
         </form>
     </div>

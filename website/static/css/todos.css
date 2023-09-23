@@ -21,7 +21,6 @@
 
 .list-name {
     font-size: var(--size-xl); /* -------------------------- */
-    /* border: 1px solid red; */
     position: relative;
     left: 3px;
     width: 20ch; /* -------------------------- */
@@ -30,6 +29,13 @@
 
 .list-name:hover {
     cursor: pointer;
+}
+
+.add-item-form {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+    align-items: end;
 }
 
 .items {
@@ -67,39 +73,54 @@
 }
 
 .editcard {
-    /* border: 1px solid red; */
-    width: 100%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    gap: .6rem;
     position: absolute;
+    background-color: var(--secondary1);
+    display: flex;
+    flex-direction: column;
     top: 0;
     left: 0;
+    width: 100%;
+    gap: .6rem;
     padding: 1rem 1.3rem;
-    margin: 1rem;
     border-radius: .5rem;
-    background-color: var(--secondary1);
     border: 3px dashed var(--primary3);
+    box-shadow: 0 10px 20px #01010147;
     z-index: 22;
 }
 
 .edit-list-form {
     /* border: 1px solid red; */
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    /* align-items: end; */
+    /* position: relative; */
+    /* border: 1px solid red; */
+    
     width: 100%;
-    align-items: center;
     gap: 1rem;
 }
 
 .edit-item-form {
-    /* border: 1px solid red; */
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    /* align-items: end; */
+    /* position: relative; */
+    /* border: 1px solid red; */
+    
     width: 100%;
-    align-items: center;
     gap: 1rem;
+}
+
+.delete-list-form {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+}
+
+.delete-item-form {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
 }
 
 .add-list-form {
@@ -109,6 +130,8 @@
 }
 
 #add-list-form {
+    display: flex;
+    flex-direction: column;
     margin-top: 3rem;
     width: 30ch; /* -------------------------- */
     gap: 1rem;

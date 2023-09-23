@@ -13,19 +13,17 @@
             {% endif %}
         {% endblock %}
     </main>
-    <div>
+    <div class="alert__conteiner">
         {% with messages = get_flashed_messages(with_categories=True) %}
             {% if messages %}
                 {% for category, message in messages %}
                     {% if category == "error" %}
                         <div class="alert error" role="alert">
                             {{ message }}
-                            <button type="button" class="btn" data-bs-dismiss="alert">X</button>
                         </div>
                     {% else %}
                         <div class="alert success" role="alert">
                             {{ message }}
-                            <button type="button" class="btn" data-bs-dismiss="alert">X</button>
                         </div>
                     {% endif %}
                 {% endfor %}
@@ -44,12 +42,13 @@
                 <div>
                     <p><a href="https://t.me/ZSunnatulla" target="_blank">Telegram</a></p>
                     <p><a href="https://twitter.com/CREOMASTER1203" target="_blank">Twitter</a></p>
-                    <p><a href="">GitHub</a></p>
                 </div>
             </div>
             <div class="suggestions">
                 <p>Feedback? Suggestions? Features you'd like to see? <a class="contact__link" href="mailto:sunnatullazayniddinov@gmail.com" target="_blank">Contact me!</a></p>
                 <p>Made by <a href="https://twitter.com/CREOMASTER1203" target="_blank">@creomaster1203</a></p>
+                <br>
+                <p>Copyright © 2023 All Rights Reserved.</p>
             </div>
     </footer>
 </body>

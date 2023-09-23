@@ -1,24 +1,13 @@
-var textarea = document.querySelector('textarea');
-textarea.addEventListener('input', function() {
-  textarea.style.height = 'auto';
-  textarea.style.height = (textarea.scrollHeight) + 'px';
+$(document).ready(function() {
+  let $textareas = $('textarea');
+
+  $textareas.on('input', function(e) {
+    let $textarea = $(this);
+    $textarea.css('height', '3.125rem');
+    let scHeight = $textarea[0].scrollHeight;
+    $textarea.css('height', scHeight + 'px');
+
+    $('#lists').masonry('reloadItems');
+    $('#lists').masonry('layout');
+  });
 });
-
-function showCard(event) {
-  // Get the element that triggered the event
-  var target = event.target;
-  
-  // Find the corresponding card
-  var card = target.nextElementSibling;
-  
-  // Show the card
-  card.style.display = 'block';
-}
-
-function saveChanges() {
-  // Hide all edit cards
-  var cards = document.querySelectorAll('.editcard');
-  for (var i = 0; i < cards.length; i++) {
-    cards[i].style.display = 'none';
-  }
-}

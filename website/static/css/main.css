@@ -6,14 +6,14 @@
 
 :root {
     --text: #f2f2f2ff;
-    --background: #1e1f2bff;
-    --primary1: #563262ff;
-    --primary2: #423262ff;
-    --primary3: #323262ff;
-    --secondary1: #2a2b3cff;
-    --secondary2: #3f415aff;
-    --secondary3: #696c96ff;
-    --accent: #a6e12cff;
+    --background: #0c0c0eff;
+    --primary3: #35353bff;
+    --primary2: #3f3f45ff;
+    --primary1: #484851ff;
+    --secondary1: #131315ff;
+    --secondary2: #1d1d20ff;
+    --secondary3: #27272b;
+    --accent: #1cea44ff;
 
     /* --text: rgb(243, 237, 247);
     --background: rgb(13, 8, 18);
@@ -47,14 +47,14 @@
 
 .light-mode {
     --text: #1e1f2b;
-    --background: #fdfdfcff;
-    --primary1: #674e97ff;
-    --primary2: #503d76ff;
-    --primary3: #423262ff;
-    --secondary1: #d1d1e0;
-    --secondary2: #a3a3c2;
-    --secondary3: #7575a3;
-    --accent: #f82571ff;
+    --background: #e0e0e0;
+    --primary1: #202020;
+    --primary2: #3e3e3e;
+    --primary3: #878787;
+    --secondary3: #f5f5f5; /* selection */
+    --secondary2: #f7f7f7;
+    --secondary1: #f0f0f0; /* filling for textarea and for docs */
+    --accent: #cf2373;
 }
 
 body {

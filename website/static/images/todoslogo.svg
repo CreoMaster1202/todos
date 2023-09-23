@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="15.999999"
+   height="15.999999"
+   viewBox="0 0 4.233333 4.233333"
+   version="1.1"
+   id="svg5"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <g
+     id="layer1"
+     transform="translate(-155.70729,-128.98437)">
+    <g
+       id="g14913"
+       transform="matrix(0.04661295,0,0,0.04661295,156.37437,124.32977)"
+       style="stroke-width:21.4532">
+      <rect
+         style="fill:#000000;stroke:none;stroke-width:21.4558;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers stroke fill;stop-color:#000000"
+         id="rect14904"
+         width="73.932434"
+         height="90.818741"
+         x="-5.8678823"
+         y="99.856422"
+         ry="10.699615" />
+      <path
+         id="path14906"
+         style="font-weight:bold;font-size:74.6214px;font-family:'Montserrat Alternates';-inkscape-font-specification:'Montserrat Alternates, Bold';fill:#ffffff;stroke-width:11.3523;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill"
+         d="m 4.8317509,127.74052 v 52.23506 H 28.561051 c 5.6712,0 10.67108,-1.06996 14.99908,-3.20911 4.37779,-2.18889 7.76034,-5.24819 10.14822,-9.17825 2.43763,-3.93006 3.65662,-8.50694 3.65662,-13.73043 0,-5.22347 -1.21899,-9.80037 -3.65662,-13.73043 -0.59987,-0.98728 -1.26257,-1.9178 -1.98799,-2.79207 l -7.0466,12.20442 c 0.30055,1.33981 0.4532,2.77786 0.4532,4.31808 0,4.97476 -1.56692,8.92981 -4.701,11.86491 -0.69814,0.6531 -1.45158,1.23158 -2.2593,1.73685 -0.0563,0.041 -0.11424,0.0798 -0.17363,0.11627 -2.50574,1.53053 -5.51967,2.32919 -9.02374,2.45618 -0.0212,7.8e-4 -0.0423,0.002 -0.0636,0.003 -0.31065,0.0105 -0.62371,0.0176 -0.94206,0.0176 h -3.43959 c -0.005,-5e-4 -0.009,-0.001 -0.0139,-0.002 h -7.58972 v -32.38562 h 3.36621 v -1.51773 c 0.003,-2.8023 0.004,-5.60458 0.003,-8.40673 z" />
+      <path
+         id="path14908"
+         style="fill:#ffffff;stroke:none;stroke-width:11.3524;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill;stop-color:#000000"
+         d="m 4.8317509,110.55604 v 10.69961 H 24.524601 v 39.0064 l 12.08867,3.23908 v -42.24548 h 20.7517 v -10.69961 z" />
+    </g>
+  </g>
+</svg>

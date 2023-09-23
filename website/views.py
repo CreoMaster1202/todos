@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify
 from flask_login import login_required, current_user
 from . import db
 from .models import User, Items, Lists
@@ -16,77 +16,82 @@ def landing():
 def about():
     return render_template("about.html")
 
+# ------------------------------------------------
+
 # Main page
 @views.route('/todos', methods=['GET', 'POST'])
 @login_required
 def todos():
     user = User.query.get(current_user.id)
-    return render_template("todos.html", user=user)
+    lists = Lists.query.filter_by(user_id=current_user.id).all()
+    return render_template("todos.html", user=user, lists=lists)
 
 # Creating the lists
-@views.route('/lists/create', methods=['GET', 'POST'])
+@views.route('/add_list', methods=['GET', 'POST'])
 @login_required
 def create_list():
-    name = request.form.get('name')
-    user_id = request.form.get('user_id')
-    new_list = Lists(name=name, user_id=user_id)
+    name = request.form['name']
+    # name = name.replace('\n', '<br/>')
+    new_list = Lists(name=name, user_id=current_user.id)
     db.session.add(new_list)
     db.session.commit()
-    return redirect(url_for('views.todos'))
+    return {'id': new_list.id}
 
-# Editing the lists
-@views.route('/todos/<int:list_id>/edit', methods=['GET', 'POST'])
+@views.route('/edit_list/<int:list_id>', methods=['POST'])
 @login_required
 def edit_list(list_id):
-    name = request.form.get('name')
-    list_ = Lists.query.get(list_id)
-    list_.name = name
+    name = request.form['name']
+    # name = name.replace('\n', '<br/>')
+    list = Lists.query.get(list_id)
+    list.name = name
     db.session.commit()
-    return redirect(url_for('views.todos'))
+    return {'id': list.id}
 
-# Deleting the lists
-@views.route('/todos/<int:list_id>/delete', methods=['POST'])
+@views.route('/delete_list/<int:list_id>', methods=['POST'])
 @login_required
 def delete_list(list_id):
-    list_ = Lists.query.get(list_id)
-    for item in list_.items:
+    list = Lists.query.get(list_id)
+    for item in list.items:
         db.session.delete(item)
-    db.session.delete(list_)
+    db.session.delete(list)
     db.session.commit()
-    return redirect(url_for('views.todos'))
+    return {'id': list.id}
 
 # Adding items to the lists
-@views.route('/items/create', methods=['POST'])
-def create_item():
-    description = request.form['item']
-    list_id = request.form['list_id']
-    new_item = Items(item=description, complete=False, list_id=list_id, user_id=current_user.id)
+@views.route('/add_item/<int:list_id>', methods=['GET', 'POST'])
+@login_required
+def create_item(list_id):
+    description = request.form['description']
+    # description = description.replace('\n', '<br/>')
+    user_id = current_user.id
+    new_item = Items(description=description, checked=False, user_id=user_id, list_id=list_id)
     db.session.add(new_item)
     db.session.commit()
-    return redirect(url_for('views.todos'))
+    return {'id': new_item.id}
 
-# Editing the items
-@views.route('/items/<int:item_id>/edit', methods=['POST'])
+@views.route('/check_item/<int:item_id>', methods=['POST'])
+@login_required
+def check_item(item_id):
+    checked = request.form['checked'] == 'true'
+    item = Items.query.get(item_id)
+    item.checked = checked
+    db.session.commit()
+    return {'id': item.id}
+
+@views.route('/edit_item/<int:item_id>', methods=['POST'])
+@login_required
 def edit_item(item_id):
-    description = request.form['item']
+    description = request.form['description']
+    # description = description.replace('\n', '<br/>')
     item = Items.query.get(item_id)
-    item.item = description
+    item.description = description
     db.session.commit()
-    return redirect(url_for('views.todos'))
+    return {'id': item.id}
 
-# Checking the items
-@views.route('/items/<int:item_id>/toggle', methods=['GET', 'POST'])
-def toggle_item(item_id):
-    item = Items.query.get(item_id)
-    item.complete = not item.complete
-    db.session.commit()
-    return redirect(url_for('views.todos'))
-
-# Deleting the items
-@views.route('/items/<int:item_id>/delete', methods=['POST'])
+@views.route('/delete_item/<int:item_id>', methods=['POST'])
+@login_required
 def delete_item(item_id):
     item = Items.query.get(item_id)
     db.session.delete(item)
     db.session.commit()
-    return redirect(url_for('views.todos'))
-
+    return {'id': item.id}

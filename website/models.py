@@ -17,17 +17,12 @@ class Lists(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
     items = db.relationship('Items', backref='list', lazy='dynamic', passive_deletes=True)
 
-    def __repr__(self):
-        return self.name
 
 class Items(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    item = db.Column(db.Text, nullable=False)
-    complete = db.Column(db.Boolean, default=False)
+    description = db.Column(db.Text, nullable=False)
+    checked = db.Column(db.Boolean, default=False)
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
     list_id = db.Column(db.Integer, db.ForeignKey('lists.id', ondelete='CASCADE'), nullable=False)
-
-    def __repr__(self):
-        return self.item
-
+    
